@@ -1,0 +1,13 @@
+
+config main
+	option enable '0'
+	option minute '0'
+	option hour '5'
+	option monday '1'
+	option tuesday '1'
+	option wednesday '1'
+	option thursday '1'
+	option friday '1'
+	option saturday '1'
+	option sunday '1'
+    option renetwork '1'

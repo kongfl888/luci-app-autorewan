@@ -1,0 +1,76 @@
+#!/bin/sh /etc/rc.common
+START=50
+
+run_rewan()
+{
+    local enable
+    config_get_bool enable $1 enable
+
+    if [ $enable = 1 ]; then
+        local minute
+        local hour
+        local week
+        config_get minute $1 minute
+        config_get hour $1 hour
+        config_get monday $1 monday
+        config_get tuesday $1 tuesday
+        config_get wednesday $1 wednesday
+        config_get thursday $1 thursday
+        config_get friday $1 friday
+        config_get saturday $1 saturday
+        config_get sunday $1 sunday
+        config_get renetwork $1 renetwork
+        if [ $minute = 0 ] ; then
+            minute="00"
+        fi
+        if [ $monday = 1 -a $tuesday  = 1 -a $wednesday = 1 -a $thursday = 1 -a $friday = 1 -a $saturday = 1 -a $sunday = 1 ] ; then
+            week="*"
+        else
+            week=""
+            if [ $sunday = 1 ]; then
+                week="0"
+            fi
+            if [ $monday = 1 ]; then
+                week="$week,1"
+            fi
+            if [ $tuesday = 1 ]; then
+                week="$week,2"
+            fi
+            if [ $wednesday = 1 ]; then
+                week="$week,3"
+            fi
+            if [ $thursday = 1 ]; then
+                week="$week,4"
+            fi
+            if [ $friday = 1 ]; then
+                week="$week,5"
+            fi
+            if [ $saturday = 1 ]; then
+                week="$week,6"
+            fi
+
+            if [ `echo $week | grep '^,'` ]; then
+                week=${week#,}
+            fi
+        fi
+        sed -i '/dorewan/d' /etc/crontabs/root >/dev/null 2>&1
+        /etc/init.d/cron restart
+        echo "$minute $hour * * $week sh /usr/bin/dorewan" >> /etc/crontabs/root
+        echo "Auto REWAN has started."
+    else
+        sed -i '/dorewan/d' /etc/crontabs/root >/dev/null 2>&1
+        /etc/init.d/cron restart
+        echo "Auto REWAN has been cleared."
+    fi
+}
+
+start()
+{
+	config_load autorewan
+	config_foreach run_rewan main
+}
+
+stop()
+{
+	echo "Auto REWAN has stoped."
+}

@@ -1,0 +1,44 @@
+msgid "Scheduled Rewan"
+msgstr "定时重拨"
+
+msgid "Scheduled rewan Setting"
+msgstr "定时重拨设置"
+
+msgid "Week Day"
+msgstr "星期"
+
+msgid "Everyday"
+msgstr "每天"
+
+msgid "Day"
+msgstr "天"
+
+msgid "Hour"
+msgstr "小时"
+
+msgid "Minute"
+msgstr "分钟"
+
+msgid "Monday"
+msgstr "星期一"
+
+msgid "Tuesday"
+msgstr "星期二"
+
+msgid "Wednesday"
+msgstr "星期三"
+
+msgid "Thursday"
+msgstr "星期四"
+
+msgid "Friday"
+msgstr "星期五"
+
+msgid "Saturday"
+msgstr "星期六"
+
+msgid "Sunday"
+msgstr "星期天"
+
+msgid "By calling network restart"
+msgstr "请求重置网络方式重拨"

@@ -1,0 +1,49 @@
+#!/bin/bash
+
+# [K] (C)2020
+# http://github.com/kongfl888/luci-app-autorewan
+
+pok=1
+
+PING1=`ping -c 5 baidu.com|grep -v grep|grep '64 bytes' |wc -l`
+
+if [ ${PING1} -eq 0 ]; then
+    pok=0
+fi
+
+sleep 5s
+
+if [ $pok -eq 0 -o "${1}" = "1" ]; then
+    #network restart
+    /etc/init.d/network restart
+else
+    /sbin/ifup wan
+fi
+
+sleep 60s
+
+pok=1
+PING1=`ping -c 5 baidu.com|grep -v grep|grep '64 bytes' |wc -l`
+
+if [ ${PING1} -eq 0 ]; then
+    pok=0
+fi
+
+if [ $pok -eq 0 ];then
+    /etc/init.d/firewall restart
+fi
+
+sleep 90s
+
+pok=1
+PING1=`ping -c 5 baidu.com|grep -v grep|grep '64 bytes' |wc -l`
+
+if [ ${PING1} -eq 0 ]; then
+    pok=0
+fi
+
+if [ $pok -eq 0 ];then
+    /etc/init.d/network restart
+fi
+
+exit 0
