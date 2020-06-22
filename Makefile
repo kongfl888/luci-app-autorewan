@@ -39,6 +39,12 @@ define Package/$(PKG_NAME)/conffiles
 endef
 
 define Package/$(PKG_NAME)/install
+	$(INSTALL_DIR) $(1)/etc/config
+	cp ./root/etc/config/autorewan $(1)/etc/config/autorewan
+
+	$(INSTALL_DIR) $(1)/etc/init.d
+	cp ./root/etc/init.d/autorewan $(1)/etc/init.d/autorewan
+
 	$(INSTALL_DIR) $(1)/usr/bin
 	cp ./root/usr/bin/dorewan $(1)/usr/bin/dorewan
 
