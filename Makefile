@@ -34,10 +34,6 @@ endef
 define Build/Compile
 endef
 
-define Package/$(PKG_NAME)/conffiles
-/etc/config/autorewan
-endef
-
 define Package/$(PKG_NAME)/install
 	$(INSTALL_DIR) $(1)/etc/config
 	cp ./root/etc/config/autorewan $(1)/etc/config/autorewan
