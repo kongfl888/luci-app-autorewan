@@ -63,7 +63,6 @@ run_rewan()
         if [ -e "/usr/bin/dorewan" ]; then
             echo "$minute $hour * * $week /usr/bin/dorewan $renetwork" >> /etc/crontabs/root
             /etc/init.d/autorewan enable
-            chmod +x /etc/init.d/autorewan
             chmod +x /usr/bin/dorewan
             echo "Auto REWAN is set." > /tmp/autorewan.log
         else
