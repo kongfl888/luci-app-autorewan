@@ -55,6 +55,7 @@ jobs:
         run: |
           cd friendlywrt-rk3328
           sed -i '/=m/d;/CONFIG_IB/d;/CONFIG_SDK/d;/CONFIG_BUILDBOT/d;/CONFIG_ALL_KMODS/d;/CONFIG_ALL_NONSHARED/d;/docker/d;/DOCKER/d;/CONFIG_DISPLAY_SUPPORT/d;/CONFIG_AUDIO_SUPPORT/d;/CONFIG_OPENSSL_PREFER_CHACHA_OVER_GCM/d;/CONFIG_VERSION/d;/SAMBA/d;/samba/d;/modemmanager/d;' configs/config_rk3328
+          sed -i '/luci-app-/d' configs/config_rk3328
           cat configs/config_rk3328 | grep "TARGET" >> ../base_r2s.seed
           cat ../base_r2s.seed > configs/config_rk3328
           cd friendlywrt
