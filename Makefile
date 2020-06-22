@@ -35,7 +35,7 @@ define Build/Compile
 endef
 
 define Package/$(PKG_NAME)/conffiles
-/etc/config/aurorewan
+/etc/config/autorewan
 endef
 
 define Package/$(PKG_NAME)/install
@@ -46,7 +46,7 @@ define Package/$(PKG_NAME)/install
 	cp -pR ./luasrc/* $(1)/usr/lib/lua/luci/
 
 	$(INSTALL_DIR) $(1)/usr/lib/lua/luci/i18n
-	po2lmo ./po/zh-cn/aurorewan.po $(1)/usr/lib/lua/luci/i18n/aurorewan.zh-cn.lmo
+	po2lmo ./po/zh-cn/autorewan.po $(1)/usr/lib/lua/luci/i18n/autorewan.zh-cn.lmo
 endef
 
 define Package/$(PKG_NAME)/postinst
