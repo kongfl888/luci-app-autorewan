@@ -10,6 +10,7 @@ run_rewan()
         local minute
         local hour
         local week
+        local renetwork
         config_get minute $1 minute
         config_get hour $1 hour
         config_get monday $1 monday
@@ -20,6 +21,9 @@ run_rewan()
         config_get saturday $1 saturday
         config_get sunday $1 sunday
         config_get renetwork $1 renetwork
+        if [ $renetwork = 0 ] ; then
+            renetwork=""
+        fi
         if [ $minute = 0 ] ; then
             minute="00"
         fi
@@ -55,12 +59,25 @@ run_rewan()
         fi
         sed -i '/dorewan/d' /etc/crontabs/root >/dev/null 2>&1
         /etc/init.d/cron restart
-        echo "$minute $hour * * $week sh /usr/bin/dorewan" >> /etc/crontabs/root
-        echo "Auto REWAN has started."
+        sleep 3s
+        if [ -e "/usr/bin/dorewan" ]; then
+            echo "$minute $hour * * $week /usr/bin/dorewan $renetwork" >> /etc/crontabs/root
+            /etc/init.d/autorewan enable
+            chmod +x /etc/init.d/autorewan
+            chmod +x /usr/bin/dorewan
+            echo "Auto REWAN is set." > /tmp/autorewan.log
+        else
+            logger "Auto REWAN: file missing, please reinstall.Settings don't work."
+            sed -i '/dorewan/d' /etc/crontabs/root >/dev/null 2>&1 || exit 1
+        fi
     else
-        sed -i '/dorewan/d' /etc/crontabs/root >/dev/null 2>&1
-        /etc/init.d/cron restart
-        echo "Auto REWAN has been cleared."
+        if [ `cat /etc/crontabs/root | grep "dorewan"` ]; then
+            sed -i '/dorewan/d' /etc/crontabs/root >/dev/null 2>&1
+            /etc/init.d/cron restart
+            echo "Auto REWAN has been cleared." > /tmp/autorewan.log
+        else
+            [ -f /tmp/autorewan.log ] && rm -f /tmp/autorewan.log
+        fi
     fi
 }
 
@@ -72,5 +89,5 @@ start()
 
 stop()
 {
-	echo "Auto REWAN has stoped."
+	echo "Auto REWAN has stoped, but do nothing. if you need to clear setting, goto system -> autorewan and make it disable." > /tmp/autorewan.log
 }

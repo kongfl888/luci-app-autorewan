@@ -5,11 +5,13 @@
 
 pok=1
 
-PING1=`ping -c 5 baidu.com|grep -v grep|grep '64 bytes' |wc -l`
+PING1=`ping -c 3 baidu.com|grep -v grep|grep '64 bytes' |wc -l`
 
 if [ ${PING1} -eq 0 ]; then
     pok=0
 fi
+
+logger "Autorewan is running..."
 
 sleep 5s
 
@@ -23,7 +25,7 @@ fi
 sleep 60s
 
 pok=1
-PING1=`ping -c 5 baidu.com|grep -v grep|grep '64 bytes' |wc -l`
+PING1=`ping -c 3 baidu.com|grep -v grep|grep '64 bytes' |wc -l`
 
 if [ ${PING1} -eq 0 ]; then
     pok=0
@@ -36,10 +38,11 @@ fi
 sleep 90s
 
 pok=1
-PING1=`ping -c 5 baidu.com|grep -v grep|grep '64 bytes' |wc -l`
+PING1=`ping -c 3 baidu.com|grep -v grep|grep '64 bytes' |wc -l`
 
 if [ ${PING1} -eq 0 ]; then
     pok=0
+    logger "ReWan as scheduled."
 fi
 
 if [ $pok -eq 0 ];then

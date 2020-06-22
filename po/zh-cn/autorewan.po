@@ -1,8 +1,20 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8"
+
+msgid "autorewan"
+msgstr "自动重拨"
+
 msgid "Scheduled Rewan"
 msgstr "定时重拨"
 
-msgid "Scheduled rewan Setting"
-msgstr "定时重拨设置"
+msgid ""
+"Scheduled rewan Setting. <a href=\"https://github.com/kongfl888/"
+"luci-app-autorewan\">Github</a>"
+msgstr "定时重拨设置 | <a href=\"https://github.com/kongfl888/"
+"luci-app-autorewan\">项目主页</a>"
+
+msgid "Scheduled rewan Setting <a href=\"https://github.com/kongfl888/luci-app-autorewan\">Github</a>"
+msgstr "定时重拨设置 <a href=\"https://github.com/kongfl888/luci-app-autorewan\">项目主页</a>"
 
 msgid "Week Day"
 msgstr "星期"

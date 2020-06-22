@@ -1,6 +1,6 @@
 require("luci.sys")
 
-m=Map("autorewan",translate("Scheduled Rewan"),translate("Scheduled rewan Setting"))
+m=Map("autorewan",translate("Scheduled Rewan"),translate("Scheduled rewan Setting. <a href=\"https://github.com/kongfl888/luci-app-autorewan\">Github</a>"))
 
 s=m:section(TypedSection,"main","")
 s.addremove=false
@@ -18,42 +18,42 @@ pass=s:option(Value,"minute",translate("Minute"))
 pass.datatype = "range(0,59)"
 pass.rmempty = false
 
-monday=s:option(Flag,"enable",translate("Monday"))
-enable.rmempty = false
-enable.default=1
+monday=s:option(Flag,"monday",translate("Monday"))
+monday.rmempty = false
+monday.default=1
 
-tuesday=s:option(Flag,"enable",translate("Tuesday"))
-enable.rmempty = false
-enable.default=1
+tuesday=s:option(Flag,"tuesday",translate("Tuesday"))
+tuesday.rmempty = false
+tuesday.default=1
 
-wednesday=s:option(Flag,"enable",translate("Wednesday"))
-enable.rmempty = false
-enable.default=1
+wednesday=s:option(Flag,"wednesday",translate("Wednesday"))
+wednesday.rmempty = false
+wednesday.default=1
 
-thursday=s:option(Flag,"enable",translate("Thursday"))
-enable.rmempty = false
-enable.default=1
+thursday=s:option(Flag,"thursday",translate("Thursday"))
+thursday.rmempty = false
+thursday.default=1
 
-friday=s:option(Flag,"enable",translate("Friday"))
-enable.rmempty = false
-enable.default=1
+friday=s:option(Flag,"friday",translate("Friday"))
+friday.rmempty = false
+friday.default=1
 
-saturday=s:option(Flag,"enable",translate("Saturday"))
-enable.rmempty = false
-enable.default=1
+saturday=s:option(Flag,"saturday",translate("Saturday"))
+saturday.rmempty = false
+saturday.default=1
 
-sunday=s:option(Flag,"enable",translate("Sunday"))
-enable.rmempty = false
-enable.default=1
+sunday=s:option(Flag,"sunday",translate("Sunday"))
+sunday.rmempty = false
+sunday.default=1
 
-renetwork=s:option(Flag,"enable",translate("By calling network restart"))
-enable.rmempty = false
-enable.default=1
+renetwork=s:option(Flag,"renetwork",translate("By calling network restart"))
+renetwork.rmempty = false
+renetwork.default=1
 
 
-local e=luci.http.formvalue("cbi.apply")
-if e then
-  io.popen("/etc/init.d/autorewan restart")
+local apply =luci.http.formvalue("cbi.apply")
+if apply then
+    luci.sys.call("/bin/chmod +x /etc/init.d/autorewan && /etc/init.d/autorewan restart")
 end
 
 return m
