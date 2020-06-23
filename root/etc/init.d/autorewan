@@ -3,80 +3,12 @@ START=50
 
 run_rewan()
 {
-    local enable
-    config_get_bool enable $1 enable
-
-    if [ $enable = 1 ]; then
-        local minute
-        local hour
-        local week
-        local renetwork
-        config_get minute $1 minute
-        config_get hour $1 hour
-        config_get monday $1 monday
-        config_get tuesday $1 tuesday
-        config_get wednesday $1 wednesday
-        config_get thursday $1 thursday
-        config_get friday $1 friday
-        config_get saturday $1 saturday
-        config_get sunday $1 sunday
-        config_get renetwork $1 renetwork
-        if [ $renetwork = 0 ] ; then
-            renetwork=""
-        fi
-        if [ $minute = 0 ] ; then
-            minute="00"
-        fi
-        if [ $monday = 1 -a $tuesday  = 1 -a $wednesday = 1 -a $thursday = 1 -a $friday = 1 -a $saturday = 1 -a $sunday = 1 ] ; then
-            week="*"
-        else
-            week=""
-            if [ $sunday = 1 ]; then
-                week="0"
-            fi
-            if [ $monday = 1 ]; then
-                week="$week,1"
-            fi
-            if [ $tuesday = 1 ]; then
-                week="$week,2"
-            fi
-            if [ $wednesday = 1 ]; then
-                week="$week,3"
-            fi
-            if [ $thursday = 1 ]; then
-                week="$week,4"
-            fi
-            if [ $friday = 1 ]; then
-                week="$week,5"
-            fi
-            if [ $saturday = 1 ]; then
-                week="$week,6"
-            fi
-
-            if [ `echo $week | grep '^,'` ]; then
-                week=${week#,}
-            fi
-        fi
-        sed -i '/dorewan/d' /etc/crontabs/root >/dev/null 2>&1
-        /etc/init.d/cron restart
-        sleep 3s
-        if [ -e "/usr/bin/dorewan" ]; then
-            echo "$minute $hour * * $week /usr/bin/dorewan $renetwork" >> /etc/crontabs/root
-            /etc/init.d/autorewan enable
-            chmod +x /usr/bin/dorewan
-            echo "Auto REWAN is set." > /tmp/autorewan.log
-        else
-            logger "Auto REWAN: file missing, please reinstall.Settings don't work."
-            sed -i '/dorewan/d' /etc/crontabs/root >/dev/null 2>&1 || exit 1
-        fi
+    if [ -e "/usr/bin/dorewan" ]; then
+        chmod +x /usr/bin/dorewan
+        /usr/bin/dorewan 2
     else
-        if [ `cat /etc/crontabs/root | grep "dorewan" -c` -gt 0  ]; then
-            sed -i '/dorewan/d' /etc/crontabs/root >/dev/null 2>&1
-            /etc/init.d/cron restart
-            echo "Auto REWAN has been cleared." > /tmp/autorewan.log
-        else
-            [ -f /tmp/autorewan.log ] && rm -f /tmp/autorewan.log
-        fi
+        logger "Auto REWAN: file missing, please reinstall.Settings don't work."
+        sed -i '/dorewan/d' /etc/crontabs/root >/dev/null 2>&1 || exit 1
     fi
 }
 
