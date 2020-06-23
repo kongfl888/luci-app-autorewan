@@ -70,7 +70,7 @@ run_rewan()
             sed -i '/dorewan/d' /etc/crontabs/root >/dev/null 2>&1 || exit 1
         fi
     else
-        if [ `cat /etc/crontabs/root | grep "dorewan"` ]; then
+        if [ `cat /etc/crontabs/root | grep "dorewan" -c` -gt 0  ]; then
             sed -i '/dorewan/d' /etc/crontabs/root >/dev/null 2>&1
             /etc/init.d/cron restart
             echo "Auto REWAN has been cleared." > /tmp/autorewan.log

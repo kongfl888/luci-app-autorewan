@@ -53,7 +53,7 @@ renetwork.default=1
 
 local apply =luci.http.formvalue("cbi.apply")
 if apply then
-    luci.sys.call("/bin/chmod +x /etc/init.d/autorewan && /etc/init.d/autorewan restart")
+    luci.sys.call("/etc/init.d/autorewan restart")
 end
 
 return m
