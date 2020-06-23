@@ -61,6 +61,8 @@ endef
 define Package/$(PKG_NAME)/postrm
 #!/bin/sh
     sed -i '/dorewan/d' /etc/crontabs/root >/dev/null 2>&1 || echo ""
+    rm -rf /tmp/luci-modulecache/ >/dev/null 2>&1 || echo ""
+    rm -f /tmp/luci-modulecache >/dev/null 2>&1 || echo ""
     exit 0
 endef
 
