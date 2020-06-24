@@ -9,7 +9,7 @@ on:
       - 'luasrc/model/cbi/*'
       - 'luasrc/controller/*'
       - 'po/zh-cn/*'
-      - 'root/*'
+      - 'root/**'
       - 'Makefile'
       - 'base_r2s.seed'
 
