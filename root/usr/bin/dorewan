@@ -160,7 +160,7 @@ justcfg() {
         if [ -z "$renetwork_t" ]; then
         echo "1"
             set_cron "$cfgstr" "$renetwork"
-        elif [ "$renetwork_t" != "0" -a "$renetwork_t" != "1" ]; then
+        elif [ "$renetwork_t" != "$renetwork" ]; then
         echo "2"
             set_cron "$cfgstr" "$renetwork"
         else
