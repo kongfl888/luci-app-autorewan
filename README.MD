@@ -16,4 +16,4 @@ Luci App ，网页端操作，带网络重启后自检
 
 文件在bin中寻
 
-你也可以在[Releases](https://github.com/kongfl888/luci-app-autorewan/releases) 里找到ipk文件下载并安装进你的openwrt。但你的机器不一定能用。（能装上就能用）
+你也可以在 [Releases](https://github.com/kongfl888/luci-app-autorewan/releases) 里找到ipk文件下载并安装进你的openwrt。
