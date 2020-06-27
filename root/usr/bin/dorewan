@@ -108,6 +108,7 @@ justcfg() {
     local friday=`get_cfg_value "friday"`
     local saturday=`get_cfg_value "saturday"`
     local sunday=`get_cfg_value "sunday"`
+    local setdhcp=`get_cfg_value "setdhcp"`
     
     local week="*"
 
@@ -146,7 +147,18 @@ justcfg() {
     fi
 
     renable=`get_cfg_value "enable"`
-    
+
+    if [ "$renable" == "1" -a "$setdhcp" == "1" ]; then
+        uci set dhcp.lan.leasetime="160h"
+        uci commit dhcp
+    elif [ "$renable" == "1" -a "$setdhcp" == "0" ]; then
+        ltime=`uci get dhcp.lan.leasetime`
+        if [ "$ltime" == "160h" ]; then
+            uci set dhcp.lan.leasetime="12h"
+            uci commit dhcp
+        fi
+    fi
+
     renetwork_t=`get_cron_renetwork`
 
     cfgstr="$minute $hour * * $week"

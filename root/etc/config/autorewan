@@ -11,3 +11,4 @@ config main
 	option saturday '1'
 	option sunday '1'
 	option renetwork '1'
+	option setdhcp '1'

@@ -46,10 +46,13 @@ sunday=s:option(Flag,"sunday",translate("Sunday"))
 sunday.rmempty = false
 sunday.default=1
 
-renetwork=s:option(Flag,"renetwork",translate("By calling network restart"))
+renetwork=s:option(Flag,"renetwork",translate("By calling network restart"),translate("Recommended"))
 renetwork.rmempty = false
 renetwork.default=1
 
+setdhcp=s:option(Flag,"setdhcp",translate("Set DHCP leasetime to 160h"),translate("It can solve the disconnection problem caused by DHCP"))
+setdhcp.rmempty = false
+setdhcp.default=1
 
 local apply =luci.http.formvalue("cbi.apply")
 if apply then

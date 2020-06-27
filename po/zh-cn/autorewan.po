@@ -54,3 +54,12 @@ msgstr "星期天"
 
 msgid "By calling network restart"
 msgstr "请求重置网络方式重拨"
+
+msgid "Set DHCP leasetime to 160h"
+msgstr "同时设置DHCP租期为160h"
+
+msgid "It can solve the disconnection problem caused by DHCP"
+msgstr "它可以减少因DHCP租期所引起的掉线"
+
+msgid "Recommended"
+msgstr "推荐勾选"
