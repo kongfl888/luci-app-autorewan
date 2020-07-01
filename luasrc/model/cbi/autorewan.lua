@@ -54,6 +54,17 @@ setdhcp=s:option(Flag,"setdhcp",translate("Set DHCP leasetime to 160h"),translat
 setdhcp.rmempty = false
 setdhcp.default=1
 
+o=s:option(Button,"restartnow")
+o.title=translate("Restart Now")
+o.inputtitle=translate("Do it now")
+o.inputstyle = "reload"
+o.description=""
+o.write = function()
+    luci.sys.exec("/etc/init.d/network restart")
+    luci.sys.call("sleep 15")
+    luci.http.redirect(luci.dispatcher.build_url("admin", "status", "overview"))
+end
+
 local apply =luci.http.formvalue("cbi.apply")
 if apply then
     luci.sys.call("/etc/init.d/autorewan restart")

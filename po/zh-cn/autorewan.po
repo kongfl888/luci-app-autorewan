@@ -10,11 +10,11 @@ msgstr "定时重拨"
 msgid ""
 "Scheduled rewan Setting. <a href=\"https://github.com/kongfl888/"
 "luci-app-autorewan\">Github</a>"
-msgstr "定时重拨设置 | <a href=\"https://github.com/kongfl888/"
+msgstr "主动重拨可以避免长时间在线导致被ISP踢下线 | <a href=\"https://github.com/kongfl888/"
 "luci-app-autorewan\">项目主页</a>"
 
 msgid "Scheduled rewan Setting <a href=\"https://github.com/kongfl888/luci-app-autorewan\">Github</a>"
-msgstr "定时重拨设置 <a href=\"https://github.com/kongfl888/luci-app-autorewan\">项目主页</a>"
+msgstr "主动重拨可以避免长时间在线导致被ISP踢下线 <a href=\"https://github.com/kongfl888/luci-app-autorewan\">项目主页</a>"
 
 msgid "Week Day"
 msgstr "星期"
@@ -63,3 +63,9 @@ msgstr "它可以减少因DHCP租期所引起的掉线"
 
 msgid "Recommended"
 msgstr "推荐勾选"
+
+msgid "Restart Now"
+msgstr "现在重启"
+
+msgid "Do it now"
+msgstr "马上执行"
