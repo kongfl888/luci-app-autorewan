@@ -65,7 +65,7 @@ msgid "Recommended"
 msgstr "推荐勾选"
 
 msgid "Restart Now"
-msgstr "现在重启"
+msgstr "现在开始重连"
 
 msgid "Do it now"
 msgstr "马上执行"
