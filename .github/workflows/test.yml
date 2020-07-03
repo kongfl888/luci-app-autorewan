@@ -49,7 +49,7 @@ jobs:
           cd friendlywrt-rk3328
           repo init -u https://github.com/friendlyarm/friendlywrt_manifests -b master-v19.07.1 -m rk3328.xml --repo-url=https://github.com/friendlyarm/repo --no-clone-bundle --depth=1
           repo sync -c --no-tags --no-clone-bundle -j8
-          cd friendlywrt/ && git fetch --unshallow
+          git config --local user.email "action@github.com" && git config --local user.name "GitHub Action"
 
       - name: Mods
         run: |
@@ -59,12 +59,7 @@ jobs:
           cat configs/config_rk3328 | grep "TARGET" >> ../base_r2s.seed
           cat ../base_r2s.seed > configs/config_rk3328
           cd friendlywrt
-          git config --local user.email "action@github.com" && git config --local user.name "GitHub Action"
-          git remote add upstream https://github.com/coolsnowwolf/lede && git fetch upstream
-          git rebase adc1a9a3676b8d7be1b48b5aed185a94d8e42728^ --onto upstream/master -X theirs
-          rm target/linux/rockchip-rk3328/patches-4.14/0001-net-thunderx-workaround-BGX-TX-Underflow-issue.patch
-          git checkout upstream/master -- feeds.conf.default
-          sed -i '5s/#src-git/src-git/g' feeds.conf.default
+          rm -rf target/linux/rockchip-rk3328/patches-4.14/*
 
       - name: Clean Feeds
         run: |
