@@ -1,0 +1,11 @@
+{
+	"luci-app-autorewan": {
+		"description": "Grant UCI access for luci-app-autorewan",
+		"read": {
+			"uci": [ "autorewan" ]
+		},
+		"write": {
+			"uci": [ "autorewan" ]
+		}
+	}
+}

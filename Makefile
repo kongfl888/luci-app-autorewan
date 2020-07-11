@@ -41,8 +41,8 @@ define Package/$(PKG_NAME)/install
 	$(INSTALL_DIR) $(1)/etc/init.d
 	cp ./root/etc/init.d/autorewan $(1)/etc/init.d/autorewan
 
-	$(INSTALL_DIR) $(1)/usr/bin
-	cp ./root/usr/bin/dorewan $(1)/usr/bin/dorewan
+	$(INSTALL_DIR) $(1)/usr
+	cp -pR ./root/usr/* $(1)/usr/
 
 	$(INSTALL_DIR) $(1)/usr/lib/lua/luci
 	cp -pR ./luasrc/* $(1)/usr/lib/lua/luci/
