@@ -5,7 +5,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=luci-app-autorewan
 PKG_VERSION:=1.0
-PKG_RELEASE:=4
+PKG_RELEASE:=5
 PKG_DATE:=20200627
 
 PKG_MAINTAINER:=kongfl888 <kongfl888@outlook.com>
